@@ -1,31 +1,38 @@
 <template>
   <section class="h-screen w-full bg-no-repeat flex justify-center items-center bg-cover flex-col">
-        <div class="items-center" v-for="prod in productos" :key="prod.nombre">
+        <div class="items-center">
             <a href="./index.html"></a>
             <i class="fa-solid fa-house p-2 bg-[#D27C2C] rounded-full"></i>
         </div>
-        <div class="h-96 flex justify-evenly flex-col">
-        <div class="flex justify-between w-80 items-center bg-white p-8 rounded-xl">
-            <i class="fa-solid fa-bread-slice text-3xl text-[#D27C2C]"></i>
-            <p>{{prod.nombre}}</p>
-            <div class="flex items-center justify-evenly w-24">
-                <i class="fa-solid fa-circle-plus text-2xl"></i>
-                <p>{{prod.cantidad}}</p>
-                <i class="fa-solid fa-circle-minus text-2xl"></i>
+        <div class="h-96 flex justify-evenly flex-col" v-for="prod in productos" :key="prod.nombre">
+            <div class="flex justify-between w-80 items-center bg-white p-8 rounded-xl">
+                <i class="fa-solid fa-bread-slice text-3xl text-[#D27C2C]"></i>
+                <p>{{prod.nombre}}</p>
+                <div class="flex items-center justify-evenly w-24">
+                    <i class="fa-solid fa-circle-plus text-2xl" @click="increment(index)"></i>
+                    <p>{{prod.cantidad}}</p>
+                    <i class="fa-solid fa-circle-minus text-2xl"></i>
+                </div>
+                <span>{{prod.precio}}</span>
             </div>
-            <span>{{prod.precio}}</span>
         </div>
         
     </section>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapMutations} from 'vuex'
 
 export default {
     name: 'productosVue',
     computed:{
         ...mapState('productos',['productos'])
+    },
+    methods:{
+        ...mapMutations('productos',['incrementar']),
+        increment(indice){
+            this.incrementar(indice)
+        }
     }
 }
 </script>

@@ -18,5 +18,10 @@ export default{
         }
         
     ]
+    },
+    mutations:{
+        incrementar(state,indice){
+            state.productos[indice].cantidad++
+        }
     }
 }
