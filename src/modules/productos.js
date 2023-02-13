@@ -22,6 +22,11 @@ export default{
     mutations:{
         incrementar(state,indice){
             state.productos[indice].cantidad++
+        },
+        decrementar(state,indice){
+            if(state.productos[indice].cantidad>0){
+                state.productos[indice].cantidad--
+            }
         }
     }
 }
